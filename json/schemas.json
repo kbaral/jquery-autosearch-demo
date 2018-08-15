@@ -1,0 +1,58 @@
+{
+    "title": "CustomerProfile",
+    "description": "AlpacaFarmIceCreamCustomerProfileForm.",
+    "type": "object",
+    "properties": {
+        "name": {
+            "title": "Name",
+            "description": "Enteryourfullname.",
+            "type": "string",
+            "required": true
+        },
+        "age": {
+            "title": "Age",
+            "description": "Enteryourage.",
+            "type": "number"
+        },
+        "gender": {
+            "title": "Gender",
+            "type": "string",
+            "enum": [
+                "Male",
+                "Female"
+            ],
+            "required": true
+        },
+        "photo": {
+            "title": "Photo",
+            "description": "Uploadyourprofilepicture.",
+            "type": "string",
+            "format": "uri"
+        },
+        "member": {
+            "title": "Member",
+            "type": "boolean",
+            "description": "Areyouamember?"
+        },
+        "icecream": {
+            "title": "Favorite",
+            "type": "string",
+            "enum": [
+                "Vanilla",
+                "Chocolate",
+                "Coffee",
+                "Strawberry",
+                "Mint"
+            ]
+        },
+        "phone": {
+            "title": "HomePhone",
+            "type": "string",
+            "format": "phone"
+        },
+        "address": {
+            "title": "HomeAddress",
+            "type": "any"
+        }
+    }
+}

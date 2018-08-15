@@ -1,0 +1,32 @@
+{
+    "form": {
+        "attributes": {
+            "action": "http: //www.alpacajs.org/endpoints/echo.php",
+            "method": "post"
+        },
+        "buttons": {
+            "submit": {
+                
+            },
+            "reset": {
+                
+            }
+        }
+    },
+    "fields": {
+        "name": {
+            "hideInitValidationError": true
+        },
+        "photo": {
+            "type": "file",
+            "styled": true
+        },
+        "member": {
+            "rightLabel": "AlpacaClubMember"
+        },
+        "address": {
+            "type": "address",
+            "addressValidation": true
+        }
+    }
+}
