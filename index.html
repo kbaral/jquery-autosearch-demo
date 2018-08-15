@@ -1,0 +1,31 @@
+<script>
+// Session Manager - Added 28th June 2017
+function getAllUrlParams() {
+  var url =   window.location.href;
+  var userImage = document.getElementById("userImg");
+  var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
+  var obj = {};
+  if (queryString) {
+	queryString = queryString.split('#')[0];
+	var arr = queryString.split('&');
+	for (var i=0; i<arr.length; i++) {
+	  var a = arr[i];
+	}
+	
+	var FName = (arr[0])
+	var LName = (arr[1])
+	var Upi = (arr[2])
+	var Email = (arr[3])
+	var Unit = (arr[4])
+
+  }
+	sessionStorage.setItem('FirstName', FName);
+	sessionStorage.setItem('LastName', LName);
+	sessionStorage.setItem('Upi', Upi);
+	sessionStorage.setItem('Email', Email);
+	sessionStorage.setItem('Unit', Unit);
+	location.replace('dashboard.html');	
+}
+//alert("index.html");
+getAllUrlParams();
+</script>
