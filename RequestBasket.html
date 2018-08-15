@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>Request Basket Page</title>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<header>
+  <div class="header_section clearfix">
+    <div class="left_section"> 
+      <!-- <div id="hamburger" class=""> <span></span> <span></span> <span></span> </div> -->
+      <div class="BILogo"> <a href="javascript:;"> <img src="images/BILogo.png" alt=""> </a> </div>
+      <div class="topNavigation topnav-header" id="topnav-header">BI Service Catalog (Beta)</div>
+    </div>
+    <div class="right_section">
+      <div class="topRightLinks"> 
+        <div class="help">
+          <a title="" class="help_pop" id="helpAnchor" href="javascript:" data-original-title=""> <img alt="" src="images/help.png"> </a>
+          <div class="help_popup" id="helpDropDown">
+
+              <ul>                                  
+                  <li class="dropdownHeader">Reference</li>                                  
+                  
+                  <li class="infohelp" ><span class="catalogIcon spriteImg"></span><a href="howtoguides/Data Catalog Dashboard Guide.pdf" target="_new">Dashboard Guide</a></li> 
+                  <li class="infohelp" ><a href="howtoguides/Data Catalog Search Guide.pdf" target="_new">Search Guide</a></li> 
+                  <li class="infohelp" ><a href="howtoguides/Data Catalog Technical Resources.pdf" target="_new">Technical Resources</a></li>                          
+                  <li class=" margin-topbottom-6"></li>                                          
+                   
+              </ul>
+          </div>
+      </div>
+        <div class="userInfo" id="userInfo" data-original-title="" title=""><span class="welcometxt">Welcome, <br>
+          <span class="user-name"  id="userName"></span></span><img src="images/user.png" width="42" height="42" alt="User" class="userImg" id="userImg"> </div>
+      </div>
+    </div>
+  </div>
+ 
+  <div id="menu" class="menu_section clearfix" style="position:fixed" >
+  <ul class="submenu clearfix" style="position:fixed">
+    <li><a href="dashboard.html">BI Dashboard</a>
+    <li><a href="javascript:;" onclick=window.open(CIStoolURL)>BI Service Catalog </a> </li>
+    </li>
+  </ul>
+  <div class="cart_section"> <a href="javascript:;"><img src="images/ico_cart.png" alt=""> <span class="count cartItem_count">0</span> </a> </div>
+</div>
+</header>
+
+
+<div class="container"> 
+ 
+  <!-- <div id="testForm"></div>  -->
+  <div class="title">Request Basket</div>
+  <div class="basket_section clearfix">
+    <div class="left_section">
+      <div class="inner_title"> you have <strong><span class="cartItem_count">0</span> items</strong> in your basket </div>
+      <div class="inner_table_content">
+        <table id="basket_table" class="table basket_table" cellpadding="0" cellspacing="0" width="100%">
+          <tr>
+            <th width="50%">Name</th>
+            <th width="20%">Service Type</th>
+            <th width="25%" class="padd15">Policy Questions</th>
+            <th></th>
+          </tr>
+        </table>
+        <div class="info_container">
+          <p><img src="images/ico_info.png" alt="" class="valignmid"> &nbsp;For items that requires clearance, please complete the Policy Questions. </p>
+        </div>
+      </div>
+    </div>
+    <div class="right_section">
+      <div class="inner_title"> Request Access </div>
+      <div class="mandatory clearfix">* Please enter all the fields except optional</div>
+      <div class="request_form_section clearfix">
+        <form id="form1">
+          <div class="project_details">
+            <div class="form-group clearfix">
+              <label for="project_name">Project Name: <span class="mandatory">*</span> </label>
+              <input type="text" class="text_box empty_validation" id="project_name" placeholder="Enter Project Name" maxlength="300">
+            </div>
+            <div class="form-group clearfix">
+              <label for="project_details">Brief Project Details: <span class="mandatory">*</span> </label>
+              <textarea name="" id="project_details" class="textarea empty_validation" maxlength="399"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6"> 
+              <!-- Validation -->
+              <div class="form-group">
+                <div class="form-group has-feedback">
+                  <label class="control-label" for="project_contact_name">Project Contact Name: <span class="mandatory">*</span> </label>
+                  <input type="text" class="form-control empty_validation" id="project_contact_name" placeholder="Search" value="" />
+                  <span class="glyphicon glyphicon-search form-control-feedback"></span> </div>
+              </div>
+              <div class="form-group clearfix hide">
+                <label for="project_contact_upi">Project Contact UPI:</label>
+                <input type="text" class="text_box" id="project_contact_upi" placeholder="Enter Project Name" value="466454">
+              </div>
+              <div class="form-group clearfix hide">
+                <label for="project_contact_email">Project Contact Email:</label>
+                <input type="text" class="text_box" id="project_contact_email" value="test@test.com">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group clearfix">
+                <label for="requester_name">Requestor Name: <span class="mandatory">*</span> </label>
+                <input type="text" class="text_box empty_validation" id="requester_name" value="" disabled="">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group clearfix ">
+                <label for="request_unit_name">Requesting Unit Name: <span class="mandatory">*</span> </label>
+                <input type="text" class="text_box empty_validation" id="request_unit_name" value="ITSBI" readonly>
+              </div>
+              <div class="form-group clearfix hide">
+                <label for="requester_upi">Requestor UPI: <span class="mandatory">*</span> </label>
+                <input type="text" class="text_box" id="requester_upi" value="" rel="">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group clearfix">
+                <label for="Requester_date">Request Date: <span class="mandatory">*</span> </label>
+                <input type="text" class="text_box empty_validation" id="Requester_date" value="" readonly>
+              </div>
+            </div>
+          </div>
+		    <div class="row">
+            <div class="col-md-6" id="data_access" style="display: none">
+              <div class="form-group clearfix">
+                <label for="data_access_method">Data Service Access Method:</label>
+                <select class="form-control" id="data_access_method">
+                  <option value="">Select</option>
+                  <option value="JDBC">JDBC</option>
+                  <option value="ODBC">ODBC</option>
+                </select>
+              </div>
+            </div>
+           
+          </div> 
+	  <div class="row">
+				<div class="col-md-6" id="web_access" style="display: none">
+				  <div class="form-group clearfix ">
+					<label for="format_data_output">Web Service Access Method:</label>
+					<!-- <select class="form-control" id="web_service_method"> -->				
+					<select class="form-control" id="webservice_data_output">
+					  <option value="">Select</option>
+					  <option value="REST">REST</option>
+					  <option value="SOAP">SOAP</option>
+					</select>
+				  </div>
+				</div>
+				<div class="col-md-6" id="wsoutput" style="display: none">
+				  <div class="form-group clearfix ">
+					<label for="format_data_output">Webservices Output Method:</label>
+					<!-- <select class="form-control" id="web_service_method"> -->				
+					<select class="form-control" id="webservice_output" >
+					  <option value="">Select</option>
+					  <option value="XML">XML</option>
+					  <option value="JSON">JSON</option>
+					</select>
+				  </div>
+				</div>
+		 </div>         		  
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group clearfix ">
+                <label for="data_volume">Data Volume For the Application:</label>
+                <input type="text" class="text_box" id="data_volume" value="">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group clearfix">
+                <label for="data_refresh_frequency">Data Refresh Frequency:</label>
+                <select class="form-control" id="data_refresh_frequency">
+                  <option value="">Select</option>
+                  <option value="Daily">Daily</option>
+                  <option value="Weekly">Weekly</option>
+                  <option value="Monthly">Monthly</option>
+                  <option value="Quarterly">Quarterly</option>
+                  <option value="On Demand">On Demand</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group clearfix ">
+                <label for="use_case">Use Case:</label>
+                <textarea name="" id="use_case" class="textarea"></textarea>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group clearfix ">
+                <label for="comments">Special/Additional Comments:</label>
+                <textarea name="" id="comments" class="textarea"></textarea>
+              </div>
+            </div>
+          </div>
+          
+          <!-- <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group clearfix ">
+                                   <label for="expected_data">Attachment <span class="clr3">(Ex: Mockups, Data flow diagram etc.)</span> <span>(Optional)</span></label>
+                                    <div class="attach"><a href="javascript:;">Attach</a></div>
+                                     <input type="file" name="upload"  class="upload" accept="image/*">
+                                </div>
+                            </div>
+                            
+                        </div> -->
+          
+          <div class="textarea_section">
+            <div class="form-group clearfix btn_container">
+              <input type="reset" id="resetBtn" class="hide">
+              <input type="button" class="blue_btn" id="Request_submitBtn" value="Submit">
+              <a href="javascript:;" id="clear_form" class="cancel_btn">Reset</a> </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Footer Section starts -->
+<div class="container-fluid">
+  <div class="row bgclr1">
+      <div class="col-md-12 col-xs-12 col-sm-12">
+          <div class="footerWrapper">
+              <div class="footerLogo"> <a href="javascript:;"><img src="images/footerLogo.png" /> </a> </div>
+              <div class="footerMenuLinks"> <a href="http://www.worldbank.org" target="_blank">World Bank</a><a href="http://www.ifc.org" target="_blank">IFC</a> <a href="http://www.miga.org" target="_blank">MIGA</a><a href="http://www.worldbank.org/icsid" target="_blank">ICSID</a> </div>
+          </div>
+      </div>
+  </div>
+  <div class="row bgclr1">
+      <div class="col-md-6  col-xs-12 col-sm-6">
+          <div class="copyrightLinks"> <a href="javascript:;">Emergency Contact Number (US): (202) 458-8888</a> </div>
+      </div>
+      <div class="col-md-6 col-xs-12 col-sm-6">
+          <div class="coyrightTxt"> &copy; 2016 The World Bank Group, All rights reserved. </div>
+      </div>
+  </div>
+</div>
+<!-- Footer Section Ends -->
+<div id="popup" class="popup"> 
+  <!-- <div id="form1" class="popup_dynamicform">
+    <a href="#" class="close_popup"><img src="images/ico_close.png" alt=""></a>
+  </div> --> 
+  <a href="#" class="close_popup_form"><img src="images/ico_close.png" alt=""> </a>
+  <div id="testForm"></div>
+</div>
+<div id="popup3" class="popup">
+  <h1>Request Access Sent 
+    <!--  <a href="#" class="close_popup_form"><img src="images/ico_close.png" alt=""></a> --> 
+    <a class="close_popup_form" onclick="location.href='dashboard.html'"><img src="images/ico_close.png" alt=""></a> </h1>
+  <div class="inner_content">
+    <div class="popup_submit_section">
+      <div class="request_access_content">
+        <h2>Your Request access was sent successfully!  and your Request ID is <span id="reqAccessID"></span></h2>
+        <p>You'll recieve an email notification, when your request is approved.</p>
+        <button class="blue_btn close_popup" onclick="location.href='dashboard.html'">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="popup5" class="popup"> <a href="#" class="close_popup_form"><img src="images/ico_close.png" alt=""> </a>
+  <div class="inner_content">
+    <div class="popup_submit_section">
+      <div class="delete_confirm">
+        <h2>Do you really want to delete the item in cart?</h2>
+        <div class="btn_container text_center">
+          <button class="blue_btn" id="delete_confirmBtn">Delete</button>
+          <a href="javascript:;" class="cancel_btn" id="delete_cancel">Cancel</a> </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="popup6" class="popup"> <a href="dashboard.html" class="close_popup_form"><img src="images/ico_close.png" alt=""> </a>
+  <div class="">
+    <div class="popup_submit_section">
+      <div class="no_items">
+        <h2>You do not have any items in the cart !</h2>
+        <div class="btn_container text_center">          
+          <button class="blue_btn" onclick="location.href='dashboard.html'">OK</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="popup7" class="popup"> <a class="close_popup_form"><img src="images/ico_close.png" alt=""> </a>
+  <div class="">
+    <div class="popup_submit_section">
+      <div class="no_items">
+        <h2>Please select Project Contact Name from the dropdown. </h2>
+        <div class="btn_container text_center">          
+          <button class="blue_btn" onclick="closepopup();">OK</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="popup8" class="popup"> <a class="close_popup_form"><img src="images/ico_close.png" alt=""> </a>
+  <div class="">
+    <div class="popup_submit_section">
+      <div class="no_items">
+        <h2>Server Error : The application has encountered an unknown error. Please try after some time.' </h2>
+        <div class="btn_container text_center">          
+          <button class="blue_btn" onclick="closepopup();">OK</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="dataalert_popup" class="popup"> <a href="#" class="close_popup_form"><img src="images/ico_close.png" alt=""> </a>
+  <div class="inner_content">
+    <div class="popup_submit_section">
+      <div class="delete_confirm">
+        <h2 class="dataalert_content"><!-- No Data Assets in the Basket. Please Add it --></h2>
+        <div class="btn_container text_center">
+          <button class="blue_btn close_popup_section">OK</button>
+          <a href="javascript:;" class="cancel_btn" id="delete_cancel">Cancel</a> </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="result"></div>
+<div class="overlay"></div>
+<div id="loading-img" class="loading-popup"><img src="images/loading.gif" width="120" height="120"/></div>
+<div class="loading-overlay"></div>
+<script type="text/javascript">
+        $(document).ready(function() {
+            var selected_items = [],
+                alpaca_form_items = [];;
+                if(sessionStorage.ObjectSelValue == undefined || sessionStorage.ObjectSelValue == " "){
+                  
+                  $("#popup6").css("display", "block");
+                  $('.overlay').css({
+                      'height': $(document).height(),
+                      'width': $(document).width(),
+                      'display': 'block', 
+                      'pointer-events': 'none'
+                  });  
+                               
+
+                }
+            if (sessionStorage.ObjectSelValue !== undefined && sessionStorage.ObjectSelValue !== " ") {
+                str = sessionStorage.ObjectSelValue;				
+                strObject = JSON.parse(str);
+                for (var i = 0; i < strObject.length; i++) {
+                    selected_items.push(strObject[i]);
+                    if(strObject[i].service_type == "DATASERVICE")
+                    {
+                        $("#data_access").show();
+                    }else if (strObject[i].service_type == "WEBSERVICE"){
+                      $("#web_access").show();
+                    }
+                    if (i == 0 || strObject[i].form_id != strObject[i - 1].form_id) {
+                        if (strObject[i].form_id == 9999) {
+
+                            $('#basket_table').append('<tr class="' + strObject[i].object_id + '"><td><input type="hidden" value=' + strObject[i].form_id + ' /><div class="ico_folder_set clearfix"><span class="img_section"><img src="images/ico_folder.png" alt=""></span> <span>' /* + strObject[i].form_id + " - "  */ + strObject[i].object_value + '</span></div></td><td><span> ' + strObject[i].service_type + ' </span></td><td><span><a href="javascript:;" class="nastyle" >N/A</td><td><a href="javascript:;" class="row_delete"><img src="images/ico_delete.png" alt=""></a></td></tr>');
+                        } else {
+                            $('#basket_table').append('<tr class="' + strObject[i].object_id + '"><td><input type="hidden" value=' + strObject[i].form_id + ' /><div class="ico_folder_set clearfix"><span class="img_section"><img src="images/ico_folder.png" alt=""></span> <span>' /* + strObject[i].form_id + " - "  */ + strObject[i].object_value + '</span></div></td><td><span> ' + strObject[i].service_type + ' </span></td><td><span><a href="javascript:;" id="open_popup" style="padding-left:35px;" class="alps-form"><img src="images/ico_pdf.png" alt=""></a></span><input type="hidden" id=' + strObject[i].form_id + ' class="empty_validation ' + strObject[i].form_id + '"/></td><td><a href="javascript:;" class="row_delete"><img src="images/ico_delete.png" alt=""></a></td></tr>');
+                        }
+                    } else {
+                        if (strObject[i].form_id == 9999) {
+                            $('#basket_table').append('<tr class="' + strObject[i].object_id + '"><td><input type="hidden" value=' + strObject[i].form_id + ' /><div class="ico_folder_set clearfix"><span class="img_section vhidden"><img src="images/ico_folder.png" alt=""></span> <span>' /* + strObject[i].form_id + " - "  */ + strObject[i].object_value + '</span></div></td><td> <span> ' + strObject[i].service_type + ' </span></td><td><span><a href="javascript:;" class="nastyle" >N/A</td></td><td><a href="javascript:;" class="row_delete"><img src="images/ico_delete.png" alt=""></a></td></tr>');
+                        } else {
+                            $('#basket_table').append('<tr class="' + strObject[i].object_id + '"><td><input type="hidden" value=' + strObject[i].form_id + ' /><div class="ico_folder_set clearfix"><span class="img_section vhidden"><img src="images/ico_folder.png" alt=""></span> <span>' /* + strObject[i].form_id + " - "  */ + strObject[i].object_value + '</span></div></td><td> <span> ' + strObject[i].service_type + ' </span></td><td><span><a href="javascript:;" id="open_popup"  style="padding-left:35px; visible="false" class="vhidden alps-form" ><img src="images/ico_pdf.png" alt=""></a></span><input type="hidden" id=' + strObject[i].form_id + ' class="empty_validation ' + strObject[i].form_id + '"/></td><td><a href="javascript:;" class="row_delete"><img src="images/ico_delete.png" alt=""></a></td></tr>');
+                        }
+
+                    }
+                    if (i == strObject.length - 1 || strObject[i].form_id != strObject[i + 1].form_id) {
+
+                        $('#basket_table').append('<tr class="' + strObject[i].object_id + '"><td colspan="4"><div class="row_divider"></div></td></tr>');
+                    }
+                }
+                $(".cartItem_count").html(strObject.length);
+               
+
+            }
+
+            if (localStorage.alpacaValueIndex !== undefined && localStorage.alpacaValueIndex != '') {
+                str = localStorage.alpacaValueIndex;
+                strObject = JSON.parse(str);
+                //console.log('strObject.length'+strObject.length);
+                //return false;
+                for (var i = 0; i < strObject.length; i++) {
+                    $('.' + strObject[i]).val(strObject[i]);
+                    $('.' + strObject[i]).parent().find('span a').html('<img src="images/ico_pdf_completed.png">');
+					$('.' + strObject[i]).parent().find('span a').addClass('form-completed');
+                }
+            }
+
+            $(document).on("click", "#open_popup", function() {
+                var dataJSON = [],
+                    optionsJSON = [],
+                    schemaJSON = [];
+                var current_form_id = $(this).parents('tr').find("td:first").find("input[type='hidden']").val();
+                $("#testForm").empty(); // for empty the alpaca form
+
+                $("#popup").css("display", "block");
+                $('.overlay').css({
+                    'height': $(document).height(),
+                    'width': $(document).width(),
+                    'display': 'block'
+                });
+                // alert($(this).parent('tr:first-child td').find("input[type='hidden']").val());
+
+
+                // Retrieves list of Databases    
+                /*$.getJSON( "https://w0lxdcdv02:9402/json/POC_BIDV/BD_Dynamic_Forms/getBDDynamicFormDesignByFormID?in_Form_ID=1")*/
+                //var URL = nodeproxyurl + "?qs=%2Fjson%2FApplication%2FBUSINESS_DIRECTORY%2FDYNAMIC_FORM%2FgetDynamicFormByFormID%3Fin_Form_ID=" +current_form_id;
+				
+				$.ajax
+				({
+          type: "GET",
+          url: nodeproxyurl + "?qs=%2Fjson%2FApplication%2FBUSINESS_DIRECTORY%2FDYNAMIC_FORM%2FgetDynamicFormByFormID%3Fin_Form_ID=" +current_form_id,
+					//url: hostcisurl + "/json/Application/BUSINESS_DIRECTORY/DYNAMIC_FORM/getDynamicFormByFormID?in_Form_ID="+current_form_id,
+					dataType: 'json',				
+					headers: {   
+					'Content-Type': 'application/json; charset=utf-8'
+					},				
+
+					//data: { "in_Form_ID" : current_form_id }, 
+					
+					
+					success: function (data){
+					  
+                        //console.log(data);
+                        dataJSON = data.response.formDesignDetails.dataJSON;
+                        optionsJSON = data.response.formDesignDetails.optionsJSON;
+                        schemaJSON = data.response.formDesignDetails.schemaJSON;
+                        Form_ID = data.response.formDesignDetails.formID;
+						console.log('dataJSON : '+JSON.stringify(dataJSON));
+                        if (localStorage.alpacaValueIndex !== undefined && localStorage.alpacaValueIndex != '') {
+                            str = localStorage.alpacaValueIndex;
+                            str1 = localStorage.alpacaValue;
+                            strObject = JSON.parse(str);
+                            strObject1 = JSON.parse(str1);
+                            //console.log('strObject.length'+strObject.length);
+                            //return false;
+                            for (var i = 0; i < strObject.length; i++) {
+                                //alert(strObject[i]+" == "+ current_form_id);
+                                if (strObject[i] == current_form_id) // formID need to change as dynamic 
+                                    dataJSON = strObject1[i].split('<BDformDetail>')[1].split('</BDformDetail>')[0];
+                            }
+                        }
+
+
+                        $("#testForm").alpaca({
+                            "dataSource": JSON.parse(dataJSON),
+                            "optionsSource": JSON.parse(optionsJSON),
+                            "schemaSource": JSON.parse(schemaJSON),
+                            "options": {
+                                "form": {
+                                    "buttons": {
+                                        "submit": {
+                                            "title": "Complete",
+                                            "click": function() {
+                                                var value = this.getValue();
+                                                var currentFormId = '';
+                                                var alpacaForm_items = [],
+                                                    alpacaForm_index = [];
+                                                var formData = "";
+                                                alpaca_form_items[Form_ID] = JSON.parse(JSON.stringify(value));
+                                                //var formData = "<BDformData>";
+                                                $.each(alpaca_form_items, function(index, value) {
+                                                    if (value !== undefined) {
+                                                        val = JSON.stringify(value);
+                                                        formData = "<BDcustomForm><BDformID>" + index + "</BDformID><BDformDetail>" + val + "</BDformDetail></BDcustomForm>";
+                                                        currentFormId = index;
+                                                        //alert('currentFormId - '+ currentFormId);            
+                                                        $('.' + currentFormId).val(currentFormId);
+                                                        $('.' + currentFormId).parent().find('span a').html('<img src="images/ico_pdf_completed.png">');
+														$('.' + currentFormId).parent().find('span a').addClass('form-completed');
+                                                        //$('.'+currentFormId).parent().find('span a').html('<b>filled</b>'); // Modify it as green pdf icon img tag 
+
+                                                    }
+													$('.alps-form:not(.form-completed)').each( function(i) {
+														$(this).css("background", "url('images/arrow.gif') no-repeat left top");
+														});
+														$('.form-completed').each( function(i) {
+														$(this).css("background", "none");
+													});
+                                                });
+                                                //formData += "</BDformData>";
+
+                                                if (localStorage.alpacaValueIndex !== undefined && localStorage.alpacaValueIndex != '') {
+                                                    str = localStorage.alpacaValueIndex;
+                                                    str1 = localStorage.alpacaValue;
+                                                    strObject = JSON.parse(str);
+                                                    strObject1 = JSON.parse(str1);
+                                                    //console.log('strObject.length'+strObject.length);
+                                                    //return false;
+                                                    for (var i = 0; i < strObject.length; i++) {
+                                                        if (currentFormId == strObject[i]) // modified by ganthiraj on 28/06/2017
+                                                        {
+                                                            strObject1[i] = formData;
+                                                            alpacaForm_index.push(strObject[i]);
+                                                            alpacaForm_items.push(strObject1[i]);
+                                                            currentFormId = '';
+                                                        } else {
+                                                            alpacaForm_index.push(strObject[i]);
+                                                            alpacaForm_items.push(strObject1[i]);
+                                                        }
+                                                        //console.log('JSON.stringify(alpacaForm_index) : '+JSON.stringify(alpacaForm_index));
+                                                    }
+                                                }
+                                                if (currentFormId != '') {
+                                                    alpacaForm_items.push(formData);
+                                                    alpacaForm_index.push(currentFormId);
+                                                    //console.log('IF--JSON.stringify(alpacaForm_index) : '+JSON.stringify(alpacaForm_index));
+                                                }
+
+                                                localStorage.setItem("alpacaValue", JSON.stringify(alpacaForm_items));
+                                                localStorage.setItem("alpacaValueIndex", JSON.stringify(alpacaForm_index));
+                                                $(".popup, .overlay").hide();
+                                                //console.log('localStorage.alpacaValueIndex'+ JSON.stringify(localStorage.alpacaValueIndex));
+                                                //console.log('localStorage.alpacaValue'+ JSON.stringify(localStorage.alpacaValue));                        
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+            });
+			});
+			
+        });
+    </script>
+<link type="text/css" href="css/jquery-ui.css" rel="stylesheet" />
+<link type="text/css" href="css/alpaca.min.css" rel="stylesheet" />
+<link type="text/css" href="css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script type="text/javascript" src="js/handlebars.min.js"></script> 
+<script type="text/javascript" src="js/alpaca.min.js"></script> 
+<script type="text/javascript" src="js/jquery-ui.js"></script> 
+<script type="text/javascript" src="js/script.js"></script> 
+<script type="text/javascript">
+
+        function closepopup(){
+            $(".overlay").css("display", "none")
+            $("#popup7").css("display", "none");
+            $("#popup8").css("display", "none");
+
+          }
+        var outputJSON;
+        $("#loading-img").css("display", "none");
+        $('.userInfo').popover({
+            trigger: "manual",
+            html: true,
+            placement: "bottom",
+            content: function() {
+                return $(".user_popup").html();
+            },
+            template: '<div class="popover" role="tooltip"><div class="arrow user-arrow"></div><div class="popover-content"></div></div>'
+        }).click(function(e) {
+            $('.popover').popover('hide');
+            $(this).popover('show');
+        });
+
+
+        $('.help_pop').popover({
+                trigger: "manual",
+                html: true,
+                placement: "bottom",
+                content: function () {
+                    return $(".help_popup").html();
+                },
+                template: '<div class="popover" role="tooltip"><div class="arrow"></div><div class="popover-content"  ></div></div>'
+            }).click(function (e) {
+                $('.popover').popover('hide');
+                $(this).popover('show');
+            });
+
+
+        var upi_id = sessionStorage.getItem('Upi');
+        var FName = sessionStorage.getItem('FirstName')
+        var LName = sessionStorage.getItem('LastName')
+        $("#requester_name").val(FName + " " + LName);
+        $("#requester_upi").val(upi_id);
+		$("#clear_form").click(function(){
+		
+			 $("#comments").val('');
+			 $("#use_case").val('');
+			 $("#data_volume").val('');
+			 $('#format_data_output option:selected').removeAttr('selected');
+			 $('#data_refresh_frequency option:selected').removeAttr('selected');
+			 $('#data_access_method option:selected').removeAttr('selected');
+		     $("#project_name").val('');
+			 $("#project_details").val('');
+			 $("#project_contact_name").val('');
+		
+		}); 
+
+
+
+        /***jQuery auto complete starts*/
+
+        $(function() {
+          var availableTags = [], availablePersonDetails = [];
+            $("#project_contact_name").autocomplete({
+                /*source: availableTags*/
+                selectFirst: true,
+                minLength: 4,
+                delay: 800,
+                source: function(request, response) {
+                 
+                  $.ajax
+                  ({
+                    type: "GET",
+                    url: nodeproxyurl + "?qs=%2Fjson%2FApplication%2FBUSINESS_DIRECTORY%2FPROJECT_CONTACT_DETAIL%2FgetProjectContactPersonDetail%3FIN_SEARCH_STRING=" +request.term, 
+                    dataType: 'json',				
+                    headers: {   
+                          'Content-Type': 'application/json; charset=utf-8'
+                    },			
+                                	
+                    success: function (data){
+                      availableTags = []; availablePersonDetails = [];
+                        var data = data.projectContactPersonDetailResponse.contactPersonDetail;
+                        $.each(data, function(index, value) {
+                            availableTags.push(value.fullName);
+                            availablePersonDetails.push(value);
+                            });
+                            
+                        response($.map(data, function(item) {
+                              return { label: item.fullName, }; 
+                         }));
+
+                        $("#loading-img").css("display", "none");
+                                  $('.loading-overlay').css("display", "none");
+                            },
+                                	
+                    });       
+
+                },
+                change: function(){
+                  var selected_value = $("#project_contact_name").val();
+                    var returnedData = $.grep(availablePersonDetails, function(element, index) {
+                        return element.fullName == selected_value;
+                    });
+                    if(returnedData.length == 0){
+                      $("#popup7").css("display", "block");
+                        $('.overlay').css({
+                            'height': $(document).height(),
+                            'width': $(document).width(),
+                            'display': 'block', 
+                            'pointer-events': 'none'
+                        });  
+                        $("#project_contact_name").css({"border": "1px solid red" })
+                        $("#project_contact_name").val("");
+                    }
+                    $("#project_contact_upi").val(returnedData[0].UPI);
+                    $("#project_contact_email").val(returnedData[0].emailID);
+                    $("#project_contact_name").css({"border": "1px solid #ccc" })
+                }                     
+               
+            });
+			
+			$("#webservice_data_output").change(function(){
+			
+				var output = $("#webservice_data_output").val(); 
+				if(output == "REST")
+				{
+					$("#wsoutput").show(); 
+					
+				}else{
+					$("#wsoutput").hide(); 
+				}			
+			
+			
+			}); 
+
+         
+    });
+
+       
+        /***jQuery auto complete stops*/
+    </script>
+</body>
+</html>
+<script>
+  $(document).on('click', function (e) {
+            $('[data-toggle="popover"],[data-original-title]').each(function () {
+                //the 'is' for buttons that trigger popups
+                //the 'has' for icons within a button that triggers a popup
+                if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {                
+                    (($(this).popover('hide').data('bs.popover')||{}).inState||{}).click = false  // fix for BS 3.3.6
+                }
+        
+            });
+        });
+
+            // Bind resize event
+        $(window).bind('resize', function(){
+            $('.popover').popover('hide');
+        });
+// Session manager
+maintainSession();
+</script>

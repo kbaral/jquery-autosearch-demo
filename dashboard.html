@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>BI Service Catalog Dashboard Page</title>
+<link rel="stylesheet" type="text/css" href="css/jquery.multiselect.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+
+
+
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script> 
+<script type="text/javascript" src="js/bootstrap.min.js"></script> 
+<script type="text/javascript" src="js/jquery.multiselect.js"></script> 
+<script type="text/javascript" src="js/script.js"></script> 
+<script type="text/javascript" src="js/common.js"></script> 
+<script type="text/javascript" src="js/jquery-ui.js"></script> 
+
+
+
+</head>
+
+<body>
+<header>
+  <div class="header_section clearfix">
+    <div class="left_section">
+      <div class="BILogo"> <a href="javascript:;"> <img src="images/BILogo.png" alt=""> </a> </div>
+      <div class="topNavigation topnav-header" id="topnav-header">BI Service Catalog (Beta)</div>
+    </div>
+    <div class="right_section">
+      <div class="topRightLinks">
+            <div class="help">
+                    <a title="" class="help_pop" id="helpAnchor" href="javascript:" data-original-title=""> <img alt="" src="images/help.png"> </a>
+                    <div class="help_popup" id="helpDropDown">
+
+                        <ul>                                  
+                            <li class="dropdownHeader">Reference</li>                                  
+                            
+                            <li class="infohelp" ><span class="catalogIcon spriteImg"></span><a href="howtoguides/Data Catalog Dashboard Guide.pdf" target="_new">Dashboard Guide</a></li> 
+                            <li class="infohelp" ><a href="howtoguides/Data Catalog Search Guide.pdf" target="_new">Search Guide</a></li> 
+                            <li class="infohelp" ><a href="howtoguides/Data Catalog Technical Resources.pdf" target="_new">Technical Resources</a></li>                                             
+                            <li class="margin-topbottom-6"></li>                                          
+                             
+                        </ul>
+                    </div>
+                </div>
+        <div class="userInfo" id="userInfo" data-original-title="" title=""><span class="welcometxt">Welcome, <br>
+          <span class="user-name" id="userName"></span></span><img src="images/user.png" width="42" height="42" alt="User" class="userImg" id="userImg"></div>
+      </div>
+    </div>
+  </div>
+  <div class="menu_section clearfix">
+  <ul class="submenu clearfix">
+    <li><a href="javascript:;" class="active">BI Dashboard</a> </li>
+    <li><a href="javascript:;" onclick=window.open(CIStoolURL)>BI Service Catalog </a> </li>    
+  </ul>
+  <div class="cart_section"> <a href="#" onclick="cartclick();"><img src="images/ico_cart.png" alt=""> <span class="count cartItem_count">0</span> </a> </div>
+</div>
+</header>
+
+<!-- placeholder for notifications starts here-->
+<div class="notification-plc"></div>
+<!-- placeholder for notifications ends here-->
+<div class="container">
+  <div class="dashboard_main_container clearfix">
+    <div class="date_section"></div>
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a id="accord" style="text-decoration: none" data-caret="down" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><p class="collapsible-header">About BI Service Catalog <img src="images/ico_arrowdown1.png" class="panel-caret"> </img> </p></a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p> The World Bank's Data Virtualization (DV) Data Catalog contains an organized and curated collection of available data services and web services, with the most viable technical metadata and information maps. <br\> It is intended to provide data consumers access to published data sets within the DV platform. Developers can use the data APIs to support their own applications, so long as they abide by specific terms of use for World Bank data.
+
+<br/><br/>The BI Service Catalog is powered by CIS Business Directory. This is an intuitive web-based interface that provides a self-service directory list of data sets contained in CIS with associated metadata. Users can search, browse, and query metadata for specific datasets.
+
+                </div>
+            </div>
+        </div>              
+    </div>
+	<div class="left_section">
+      <div class="graph_section clearfix">	  
+        <div class="left_section">
+          <div class="inner_wrapper" style="height:410px">
+            <h2 style="border:none;">Recent Request</h2>
+            <div class="text_right pull-right" style="width:200px;position: relative;right: -35px;top: -46px;">
+              <select class="select_box " id="select_status">
+                <option value="all">All Status</option>
+                <option value="Submitted">Submitted</option>
+				<option value="Approval in Process">Approval in Process</option>
+                <option value="Pre-Approved">Pre-Approved</option>               
+                <option value="Approved">Approved</option>
+                <option value="Not Approved">Not Approved</option>
+              </select>
+            </div>
+            <div class="graph_content recent_request">
+              <div class="graph_table">
+                <table class="table" cellpadding="0" cellspacing="0" width="100%" id="recent_request_table">
+                  <tr>
+                    <th width="20%">Request #</th>
+                    <th width="60%">Project Name</th>
+                    <th>Status</th>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="right_section">         
+          <div class="inner_wrapper" style="height:410px; overflow: auto">
+            <h2>Data Asset Count by Domain</h2>
+            <table id="data-asset"style='width:100%' class="graph_content" style="text-align:center"> </table>
+          </div>       
+        </div>
+      </div>
+      <div class="graph_section clearfix"> 
+        <!-- <div class="left_section">
+									<div class="inner_wrapper type1">
+											<h2>Recently Completed</h2>
+											<div class="graph_content recent_request">
+													<div class="graph_table">
+															<table class="table" cellpadding="0" cellspacing="0" width="100%" id="recently_completed">
+																	<tr>
+																			<th width="20%">Key</th>
+																			<th width="60%">Summary</th>
+																			<th>Stauts</th>
+																	</tr>
+																	
+																
+															</table>
+													</div>
+											</div>
+									</div>
+							</div> -->
+        <div class="left_section">
+          <div class="inner_wrapper type1">
+            <h2>Frequently Used Web Services (Last 7 Days)</h2>
+            <table id="requestwebchart" style='width:100%'></table>
+			<br/><br/>
+		</div>
+		</div>
+		<div class="right_section">
+		  <div class="inner_wrapper">
+			<h2>Frequently Used Data Services (Last 7 Days)</h2>
+            <table id="requestdatachart" style='width:100%'></table>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="right_section">
+      <div class="inner_wrapper type2">
+        <h2 class="quick_links">REQUEST ACCESS</h2>
+        <div class="bicart_btn_content">
+        <p style="font-size:12px">Data services transform & simplify complex data from native structures into easy-to-understand business view. It connects and integrates data from diverse sources, without the cost and overhead of physical data consolidation.</p>
+          <button class="DataCataglogBtn requestBtn" id="btnData">Request Data Service</button>
+        </div>
+        <div class="bicart_btn_content">
+        <p style="font-size:12px">Web API Services uses HTTP for communication and is based on the RESTful as protocol for exchanging messages.. The format of the information returned is XML or JSON. </p>
+          <button class="DataCataglogBtn requestBtn" id="btnWeb">Request Web Service</button>
+        </div>
+      </div>
+    
+      <div class="quick_box">      
+        <h2>BI Tools External Links</h2>
+        <div class="inner_contents clearfix">
+          <ul>
+            <li><a href="https://wbgportal.worldbank.org/common/home" target="_blank" class="popuptree-anc"><img src="images/ico_api.png" alt="API Catalog">WBG Portal </a> <a href="https://wbgportal.worldbank.org/common/home" target="_blank" class="help_icon"><img src="images/ico_info1.png" alt="Help" class="ico_info"></a></li>
+            <li> <a href="https://wbgportal.worldbank.org/common/analytics/" target="_blank" class="popuptree-anc"><img src="images/ico_analysis.png" alt="Analysis for office">Analysis for Office</a> <a href="https://spark.worldbank.org/groups/analysis-for-office" target="_blank" class="help_icon"><img src="images/ico_info1.png" alt="Help" class="ico_info"></a> </li>
+            <li> <a href="http://bireporting.worldbank.org/BOE/BI" target="_blank" class="popuptree-anc"><img src="images/ico_launchpad.png" alt="BI Launchpad">BI Launchpad</a> <a href="https://spark.worldbank.org/groups/self-service-reporting-portal" target="_blank" class="help_icon"><img src="images/ico_info1.png" alt="Help" class="ico_info"></a> </li>
+            <li><a href="https://tab.worldbank.org/" target="_blank" class="popuptree-anc"><img src="images/ico_tableau.png" alt="Tableau">Tableau </a> <a href="https://tab.worldbank.org/" target="_blank" class="help_icon" data-toggle="popover" data-placement="bottom" data-content="Tableau Help" data-original-title="" title=""><img src="images/ico_info1.png" alt="Help" class="ico_info"></a></li>
+            <li><a href="http://reports.worldbank.org/BusinessGlossaryV1/" target="_blank" class="popuptree-anc"><img src="images/ico_glossary.png" alt="Business Glossary">Business Glossary </a> <a href="http://reports.worldbank.org/BusinessGlossaryV1/" target="_blank" class="help_icon"><img src="images/ico_info1.png" alt="Help" class="ico_info"></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="quick_box">
+        <h2>Learning Links</h2>
+        <div class="inner_contents clearfix">
+          <ul>
+            <li><a href="https://olc.worldbank.org/about-olc/transition-page" target="_blank" class="popuptree-anc"><img src="images/ico_learning.png" width="15" height="15" alt="OLC Course Registration">OLC Course Registration</a></li>
+            <li><a href="https://wbgportal.worldbank.org/common/trainingtemplates" target="_blank" class="popuptree-anc"><img src="images/ico_learning.png" width="15" height="15" alt="OLC Course Registration">Learning templates</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>
+<div id="popup1" class="popup">
+  <h1>Add Data Assets to Cart <a href="#" class="close_popup_form"><img src="images/ico_close.png" alt=""></a> </h1>
+  <div class="request_form_popup">
+    <div class="error_msg_container">
+      <div id="error_msg1">You have not selected any items to add to basket</div>
+    </div>
+    <div class="error_msg_container1">
+      <div id="error_msg2">The following items are already in the Basket:
+        <ul>
+          <!-- <li>CURRENCY DECIMAL PLACES</li>
+								<li>FIF_DFI_CONTRIB_DETAIL</li>
+								<li>FIF_DFI_CONTRIB_SUMMARY</li>
+								<li>FIF_DFI_INSTLMNT_DTL</li> -->
+        </ul>
+      </div>
+    </div>
+    <div class="error_msg_container2">
+            <div id="error_msg3">You are not allowed to select more than <b>10</b> Data Assets in one request to the cart.              
+            </div>
+    </div>
+    <div class="row">
+     <div id="data-serv" style="display:none">
+      <div class="inner_title"> Data Services </div>
+      <div class="paddt10">
+        <table class="table basket_table data_asset_table" cellpadding="0" cellspacing="0" width="100%">
+          <tr>
+            <th width="25%">Database</th>
+            <th width="25%">Catalog</th>
+            <th width="20%">Schema</th>
+            <th width="30%">Object</th>
+          </tr>
+          <tr>
+            <td><select name="" id="database_selectbox" class="select_box">
+                <option value="option1">-- select --</option>
+              </select></td>
+            <td><select name="" id="catalog_selectbox" class="select_box">
+                <option value="option1">-- select --</option>
+              </select></td>
+            <td><select name="" id="schema_selectbox" class="select_box">
+                <option value="option1">-- select --</option>
+              </select></td>
+            <td><select name="" id="object_selectbox" class="select_box t">
+                <option value="option1">-- select --</option>
+              </select></td>
+          </tr>
+          <tr>&nbsp;</tr>
+        </table>
+      </div>
+    </div></div>
+    <div class="row">
+    <div id="web-serv" style="display:none">
+      <div class="inner_title"> Web Services </div>
+      <div class="paddt10">
+        <table class="table basket_table data_asset_table" cellpadding="0" cellspacing="0" width="100%">
+          <tr>
+            <th width="45%">Web Service Path</th>
+            <th width="25%">Web Service Name</th>
+            <th width="35%">Operation</th>
+          </tr>
+          <tr>
+            <td><select name="" id="path_selectbox" class="select_box" style="width:95%;">
+                <option value="option1">-- select --</option>
+              </select></td>
+            <td><select name="" id="webService_selectbox" class="select_box">
+                <option value="option1">-- select --</option>
+              </select></td>
+            <td><select name="" id="Operation_selectbox" class="select_box">
+                <option value="option1">-- select --</option>
+              </select>
+              </td>
+          </tr>
+          </table>
+          </div>
+         
+      </div>
+    </div> <table class="table basket_table data_asset_table" cellpadding="0" cellspacing="0" width="100%">
+          <tr>
+            <td colspan="4"><div class="btn_container popup_submit_section">
+                <div>
+                  <button class="blue_btn" id="addtocart">Add to Cart</button>
+                  <a href="javascript:;" class="close_all_popup">Cancel</a> </div>
+                <div class="viewCart-lnk"><a href="javascript:;" id="viewCartBtn">View Cart <span></span></a> </div>
+              </div></td>
+          </tr>
+        </table>
+  </div>
+</div>
+<div id="popup2" class="popup">
+  <h1>Add Data Assets to Cart 
+    <a href="#" class="close_popup_form"><img src="images/ico_close.png" alt=""></a>
+  </h1>
+  <div class="inner_content">
+    <p><strong> <span class="view_item_count"></span> Items has been added to your cart</strong> </p>
+    <div id="scrollable">
+      <table id="viewcart_table" class="table basket_table viewcart_table" cellpadding="0" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th width="80%">Name</th>
+            <th width="20%">Clearance</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="btn_container popup_submit_section">
+    <button class="blue_btn" id="viewCart">Checkout</button>
+    <a href="javascript:;" class="add_more" id="btnData1">Add more <strong>Data Services</strong></a>
+    <a href="javascript:;" class="add_more" id="btnWeb2">Add more <strong>Web Services</strong></a><br />
+    <span class="disclaimer_txt" style="display:block;">*You can check out, if you want to add more items.</span>
+    </div>
+</div>
+<div id="popup6" class="popup"> <a href="dashboard.html" class="close_popup_form"><img src="images/ico_close.png" alt=""> </a>
+    <div class="">
+      <div class="popup_submit_section">
+        <div class="no_items">
+          <h2>You do not have any items in the cart !</h2>
+          <div class="btn_container text_center">          
+            <button class="blue_btn" onclick="location.href='dashboard.html'">OK</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="overlay"></div>
+
+<div class="clearfix"></div>
+<!-- Footer Section starts -->
+<div class="container-fluid">
+    <div class="row bgclr1">
+        <div class="col-md-12 col-xs-12 col-sm-12">
+            <div class="footerWrapper">
+                <div class="footerLogo"> <a href="javascript:;"><img src="images/footerLogo.png" /> </a> </div>
+                <div class="footerMenuLinks"> <a href="http://www.worldbank.org" target="_blank">World Bank</a><a href="http://www.ifc.org" target="_blank">IFC</a> <a href="http://www.miga.org" target="_blank">MIGA</a><a href="http://www.worldbank.org/icsid" target="_blank">ICSID</a> </div>
+            </div>
+        </div>
+    </div>
+    <div class="row bgclr1">
+        <div class="col-md-6  col-xs-12 col-sm-6">
+            <div class="copyrightLinks"> <a href="javascript:;">Emergency Contact Number (US): (202) 458-8888</a> </div>
+        </div>
+        <div class="col-md-6 col-xs-12 col-sm-6">
+            <div class="coyrightTxt"> &copy; 2016 The World Bank Group, All rights reserved. </div>
+        </div>
+    </div>
+</div>
+<!-- Footer Section Ends -->
+
+<script type="text/javascript">
+        $(document).ready(function() {
+            var URL = hostcisurl + "/json/Application/BUSINESS_DIRECTORY/DATA_CATALOG/getCISResourceDetailByID";
+            var proxyURL = nodeproxyurl + "?qs=%2Fjson%2FApplication%2FBUSINESS_DIRECTORY%2FDATA_CATALOG%2FgetCISResourceDetailByID%3F";
+			var graphurl = nodeproxyurl + "?qs=%2Fjson%2FApplication%2FBUSINESS_DIRECTORY%2FDATA_SERVICE_STATISTICS%2F"; //getServiceAcessStatistics"; 
+            $(".error_msg_container1, .error_msg_container, .error_msg_container2").hide();
+            $("#object_selectbox, #Operation_selectbox, .ms-options-wrap > button").removeAttr("style");
+            $('#catalog_selectbox, #schema_selectbox, #object_selectbox, #Operation_selectbox').find("option:gt(0)").remove();
+            $("#object_selectbox, #Operation_selectbox").multiselect('unload');
+            $("#object_selectbox, #Operation_selectbox").removeAttr("multiple");
+            $("#object_selectbox, #Operation_selectbox").find('option').remove();
+            $('#object_selectbox, #Operation_selectbox').append('<option value="option1">-- select --</option>');
+            //$("#popup1").css("display", "block");
+            $('#database_selectbox, #Operation_selectbox').prop("selectedIndex", 0);
+            $('#catalog_selectbox, #schema_selectbox, #object_selectbox, #Operation_selectbox').find("option:gt(0)").remove();
+            /*$('.overlay').css({
+                'height': $(document).height(),
+                'width': $(document).width(),
+                'display': 'block'
+            });*/
+          
+            var db_sel_value, cat_sel_value, schema_sel_value;
+			
+            // Retrieves list of Databases
+            $.ajax({
+                type: "GET",
+               // url: URL+'?IN_DATASOURCE_TYPE=VIRTUALRELATIONAL&IN_SEARCH_FOR=DATASOURCE',
+                url: proxyURL + 'IN_DATASOURCE_TYPE%3DVIRTUALRELATIONAL%26IN_SEARCH_FOR%3DDATASOURCE',
+                dataType: 'json',
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8'
+                },
+               
+                success: function(msg) {
+                    
+					msg_data = msg.CISResourceDetailResponse.CISResourceDetail;					
+                    $.each(msg_data, function(i, value) {												
+                        $('#database_selectbox').append($("<option value=" + value['resourceID'] + ">" +value['resourceName'] + "</option>"));
+                    });
+                }
+				
+            });
+
+            // Retrieves list of catalogues
+            $("#database_selectbox").change(function() {
+                db_sel_value = $("#database_selectbox").val();                
+                if (db_sel_value != 'option1') {
+                    $.ajax({
+                        type: "GET",
+                        url: proxyURL +'IN_DATASOURCE_TYPE%3DVIRTUALRELATIONAL%26IN_SEARCH_FOR%3DCATALOG%26IN_PARENT_RESOURCE_ID=' + db_sel_value,
+                        //url: nodeproxyurl + 'qs=%2Fjson%2FApplication%2FBUSINESS_DIRECTORY%2FDATA_CATALOG%2FgetCISResourceDetailByID%3FIN_DATASOURCE_TYPE%3DVIRTUALRELATIONAL%26IN_SEARCH_FOR%3DDATASOURCE' + db_sel_value,
+                        dataType: 'json',
+                        headers: {
+                            'Content-Type': 'application/json; charset=utf-8'
+                        },                       
+                        success: function(msg) {                            
+							msg_data = msg.CISResourceDetailResponse.CISResourceDetail;					
+							$.each(msg_data, function(i, value) {												
+								$('#catalog_selectbox').append($("<option value=" + value['resourceID'] + ">" +value['resourceName'] + "</option>"));
+							});
+                        }
+                    });
+                }
+            })
+
+            // Retrieves list of Schemas
+            $("#catalog_selectbox").change(function() {
+                cat_sel_value = $("#catalog_selectbox").val();
+                if (cat_sel_value != 'option1') {
+                    $.ajax({
+                        type: "GET",
+                        url: proxyURL +'IN_DATASOURCE_TYPE%3DVIRTUALRELATIONAL%26IN_SEARCH_FOR%3DSCHEMA%26IN_PARENT_RESOURCE_ID=' + cat_sel_value,
+                        //url: URL+'?IN_DATASOURCE_TYPE=VIRTUALRELATIONAL&IN_SEARCH_FOR=SCHEMA&IN_PARENT_RESOURCE_ID=' + cat_sel_value ,
+                        dataType: 'json',
+                        headers: {
+                            'Content-Type': 'application/json; charset=utf-8'
+                        },                                             
+                        success: function(msg) {
+							msg_data = msg.CISResourceDetailResponse.CISResourceDetail;					
+							$.each(msg_data, function(i, value) {												
+								$('#schema_selectbox').append($("<option value=" + value['resourceID'] + ">" +value['resourceName'] + "</option>"));
+							});                            
+                        }
+                    });
+                }
+            })
+
+            // Retrieves list of Objects
+            $("#schema_selectbox").change(function() {
+                $('#object_selectbox').find("option:gt(0)").remove();
+                schema_sel_value = $("#schema_selectbox").val();
+                if (schema_sel_value != 'option1') {
+                    $.ajax({
+                        type: "GET",
+                        url: proxyURL +'IN_DATASOURCE_TYPE%3DVIRTUALRELATIONAL%26IN_SEARCH_FOR%3DTABLE%26IN_PARENT_RESOURCE_ID=' +  schema_sel_value,
+                        // url: URL+'?IN_DATASOURCE_TYPE=VIRTUALRELATIONAL&IN_SEARCH_FOR=TABLE&IN_PARENT_RESOURCE_ID=' + schema_sel_value ,
+                        dataType: 'json',
+                        headers: {
+                            'Content-Type': 'application/json; charset=utf-8'
+                        },                       
+                        success: function(msg) {
+                            msg_data = msg.CISResourceDetailResponse.CISResourceDetail;					
+							$.each(msg_data, function(i, value) {	
+								var title = value['resourceDescription']; 							
+								$('#object_selectbox').append($("<option value=" + value['resourceID'] + " data-des = '" + title +  "' >" +value['resourceName'] + "</option>"));
+							}); 
+							console.log($('#object_selectbox'));
+                            $("#object_selectbox").attr("multiple", "multiple");
+                            $("#object_selectbox").find("option").eq(0).remove();
+                            $("#object_selectbox").multiselect('reload');
+
+                            $("#object_selectbox").multiselect({
+                                "selectAll": true,
+                            });
+                        },
+                    })
+                } else {
+
+                    $("#object_selectbox").multiselect('unload');
+                    $("#object_selectbox").removeAttr("multiple");
+                    $("#object_selectbox").find('option').remove();
+                    $('#object_selectbox').append('<option value="option1">-- select --</option>');
+                }
+             
+            });
+			
+			
+			// Retrieves list of Path
+            $.ajax({
+                type: "GET",
+                url: proxyURL +'IN_DATASOURCE_TYPE%3DWEBSERVICE%26IN_SEARCH_FOR%3DPATH',
+                //url: URL+'?IN_DATASOURCE_TYPE=WEBSERVICE&IN_SEARCH_FOR=PATH',
+                dataType: 'json',
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8'
+                },
+                         
+                success: function(msg) {
+					msg_data = msg.CISResourceDetailResponse.CISResourceDetail;					
+                    $.each(msg_data, function(i, value) {												
+                        $('#path_selectbox').append($("<option value=" + value['resourceName'] + ">" +value['resourceName'] + "</option>"));
+                    });
+                }
+            });
+
+            // Retrieves list of Webservice
+            $("#path_selectbox").change(function() {
+                path_value = $("#path_selectbox").val();                
+                if (db_sel_value != 'option1') {
+                    $.ajax({
+                        type: "GET",
+                        url: proxyURL +'IN_DATASOURCE_TYPE%3DWEBSERVICE%26IN_SEARCH_FOR%3DWEBSERVICE%26IN_WEBSERVICE_PATH=' +  path_value,
+                       // url: URL+'?IN_DATASOURCE_TYPE=WEBSERVICE&IN_SEARCH_FOR=WEBSERVICE&IN_WEBSERVICE_PATH=' + path_value,
+                        dataType: 'json',
+                        headers: {
+                            'Content-Type': 'application/json; charset=utf-8'
+                        },                        
+                        success: function(msg) {                            
+							msg_data = msg.CISResourceDetailResponse.CISResourceDetail;					
+							$.each(msg_data, function(i, value) {												
+								$('#webService_selectbox').append($("<option value=" + value['resourceID'] + ">" +value['resourceName'] + "</option>"));
+							});
+                        }
+                    });
+                }
+            })
+
+
+            $("#webService_selectbox").change(function() {
+                web_service_value = $("#webService_selectbox").val();
+				//$("#Operation_selectbox").find("option").remove();
+				//console.log(cat_sel_value); 
+				//$("#Operation_selectbox").find("option:gt(0)").remove();
+				//$('#object_selectbox').find("option:gt(0)").remove();
+                if (web_service_value != 'option1') {
+                    $.ajax({
+                        type: "GET",
+                        url: proxyURL +'IN_DATASOURCE_TYPE%3DWEBSERVICE%26IN_SEARCH_FOR%3DOPERATION%26IN_PARENT_RESOURCE_ID=' +  web_service_value,
+                        //url: URL+'?IN_DATASOURCE_TYPE=WEBSERVICE&IN_SEARCH_FOR=OPERATION&IN_PARENT_RESOURCE_ID=' + web_service_value ,
+                        dataType: 'json',
+                        headers: {
+                            'Content-Type': 'application/json; charset=utf-8'
+                        },                                            
+                        success: function(msg) {
+							msg_data = msg.CISResourceDetailResponse.CISResourceDetail;	
+							
+							$.each(msg_data, function(i, value) {	
+								var title = value['resourceDescription']; 
+								$('#Operation_selectbox').append($("<option title = "+ title + " value=" + value['resourceID'] + ">" +value['resourceName'] + "</option>"));
+							}); 
+							
+							$("#Operation_selectbox").attr("multiple", "multiple");
+                            $("#Operation_selectbox").find("option").eq(0).remove();
+                            $("#Operation_selectbox").multiselect('reload');
+
+                            $("#Operation_selectbox").multiselect({
+                                "selectAll": true,
+                            });                           
+                        }
+                    });
+                }
+				else
+				{
+					$("#Operation_selectbox").multiselect('unload');
+                    $("#Operation_selectbox").removeAttr("multiple");
+                    $("#Operation_selectbox").find('option').remove();
+                    $('#Operation_selectbox').append('<option value="option1">-- select --</option>');
+				}
+            })
+			
+			
+			
+            $('#catalog_selectbox, #schema_selectbox, #object_selectbox').prop("selectedIndex", 0);
+            $('#catalog_selectbox, #schema_selectbox, #object_selectbox').find("option:gt(0)").remove();
+            $("#object_selectbox").multiselect('unload');
+            $("#object_selectbox").removeAttr("multiple");
+            $("#object_selectbox").find('option').remove();
+            $('#object_selectbox').append('<option value="option1">-- select --</option>');
+           // $("#popup1").css("display", "block");
+            $('#database_selectbox').prop("selectedIndex", 0);
+            $('#catalog_selectbox, #schema_selectbox, #object_selectbox').find("option:gt(0)").remove();
+            /*$('.overlay').css({
+                'height': $(document).height(),
+                'width': $(document).width(),
+                'display': 'block'
+            });*/
+            $("#database_selectbox").change(function() {
+                $('#catalog_selectbox, #schema_selectbox, #object_selectbox').find("option:gt(0)").remove();
+                $("#object_selectbox").multiselect('unload');
+                $("#object_selectbox").removeAttr("multiple");
+                $("#object_selectbox").find('option').remove();
+                $('#object_selectbox').append('<option value="option1">-- select --</option>');
+            });
+            $("#catalog_selectbox").change(function() {
+                $('#schema_selectbox, #object_selectbox').find("option:gt(0)").remove();
+                $("#object_selectbox").multiselect('unload');
+                $("#object_selectbox").removeAttr("multiple");
+                $("#object_selectbox").find('option').remove();
+                $('#object_selectbox').append('<option value="option1">-- select --</option>');
+            });
+			 $("#path_selectbox").change(function() {
+                $('#webService_selectbox, #Operation_selectbox').find("option:gt(0)").remove();
+                $("#Operation_selectbox").multiselect('unload');
+                $("#Operation_selectbox").removeAttr("multiple");
+                $("#Operation_selectbox").find('option').remove();
+                $('#Operation_selectbox').append('<option value="option1">-- select --</option>');
+            });
+
+            $(".collapsible-header").click(function() {
+                
+                var panel = $("#accord").data("caret");
+                if(panel == "down")
+                {
+                    $(".panel-caret").attr('src', 'images/ico_arrowup1.png');
+                    $("#accord").removeAttr("data-caret"); 
+                    $("#accord").attr("data-caret", "up"); 
+                    $("#accord").data("caret", "up"); 
+                }
+                else{
+                    $(".panel-caret").attr('src', 'images/ico_arrowdown1.png');
+                    $("#accord").removeAttr("data-caret"); 
+                    $("#accord").attr("data-caret", "down");
+                    $("#accord").data("caret", "down");
+                }               
+               
+              
+
+            });
+
+
+            $('.help_pop').popover({
+                trigger: "manual",
+                html: true,
+                placement: "bottom",
+                content: function () {
+                    return $(".help_popup").html();
+                },
+                template: '<div class="popover" role="tooltip"><div class="arrow"></div><div class="popover-content"  ></div></div>'
+            }).click(function (e) {
+                $('.popover').popover('hide');
+                $(this).popover('show');
+            });
+
+          
+
+             $('.userInfo').popover({
+                trigger: "manual",
+                html: true,
+                placement: "bottom",
+                content: function() {
+                    return $(".user_popup").html();
+                },
+                template: '<div class="popover" role="tooltip"><div class="arrow user-arrow"></div><div class="popover-content"></div></div>'
+            }).click(function(e) {
+                $('.popover').popover('hide');
+                $(this).popover('show');
+            });
+           
+           
+            $("#select_status").change(function() {
+                var input, filter, table, tr, td, i;
+                filter = $("#select_status").val();
+                //alert(filter);
+                if (filter != "all") {
+                    table = document.getElementById("recent_request_table");
+                    tr = table.getElementsByTagName("tr");
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[2];
+                        if (td) {
+                            if (td.innerHTML.indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } else {
+                                tr[i].style.display = "none";
+                            }
+                        }
+                    }
+                } else {
+                    $('#recent_request_table').find("tr").removeAttr("style");
+                }
+            });            
+			 
+			 
+			 
+			 // Retrieves numbers for graph
+            $.ajax({
+                type: "GET",
+                url: graphurl + "getServiceAcessStatistics",
+                dataType: 'json',
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8'
+                },                                
+                success: function(msg) {
+					msg_data = msg.serviceAccessStatisticsResponse.serviceAccessStatistics;	
+					var dataPoints = []; 
+					var div = $("#requestwebchart").empty(); 
+					var div2 = $("#requestdatachart").empty(); 
+					
+                      var maxval = 1000; 
+                      var max = 1; 
+                      for (var x = 0; x < msg_data.length; x++)
+                      {
+                          if((msg_data[x]['serviceType'] == 'WEB SERVICE'))
+                          {
+                              if(maxval < msg_data[x]['runCount'])
+                              {
+                                  maxval = msg_data[x]['runCount']; 
+                              }
+
+                          }
+                          if((msg_data[x]['serviceType'] == 'DATA SERVICE'))
+                          {
+                              if(max < msg_data[x]['runCount'])
+                              {
+                                  max = msg_data[x]['runCount']; 
+                              }
+
+                          }
+
+                         
+                      }
+					$.each(msg_data, function(i, value) {	
+						if((value['serviceType'] == 'WEB SERVICE')) {
+
+							var percent = value['runCount'] /maxval * 100; 
+							//div.append("<g class='bar'><rect width='40' height='19'></rect> <text x='45' y='9.5' dy='.35em'> 2 bananas</text></g>"); 
+							div.append("<div style='padding-bottom:5px'> " + value['serviceABBRName'] + "<span style='float:right'> " + value['runCount'] + " </span></div>");
+							//div.append("<tr><td style='float:left;'> " + value['serviceABBRName'] + "</td><td style=' font-size: 14px; padding-left:50px;'>" + value['runCount'] + "</td></tr>");
+							div.append("<div style='text-align:center; height:5px;' class='progress'> <div class='progress-bar' role='progressbar' aria-valuenow='"+ value['runCount'] +"' aria-valuemin='0' aria-valuemax='1000' style='width:"+percent+"%;'></div></div>");
+						}
+						else if((value['serviceType'] == 'DATA SERVICE')) {                        					
+							
+							var percent = value['runCount'] /max * 100; 
+							div2.append("<div style='padding-bottom:5px'> " + value['serviceABBRName'] + "<span style='float:right'> " + value['runCount'] + " </span></div>");
+							div2.append("<div style='text-align:center; height:5px;' class='progress'> <div class='progress-bar bg-warning' role='progressbar' aria-valuenow='"+ value['runCount'] +"' aria-valuemin='0' aria-valuemax='1000' style='width:"+percent+"%; background:#ffae00; '></div></div>");
+							//div2.append("<tr><td style='text-align:center; font-size: 40px'>" + value['runCount'] + "</td></tr><tr><td style='text-align:center;'> " + value['serviceABBRName'] + "</td></tr>");
+						}
+					 
+						
+					});
+					
+						
+                    //});
+                }
+				
+				
+            });
+			
+			 $.ajax({
+                type: "GET",
+                url: graphurl + "getObjectCategoryDetail",
+                dataType: 'json',
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8'
+                },                              
+                success: function(msg) {
+					msg_data = msg.objectCategoryDetailResponse.objectCategoryDetail;	
+					var dataPoints = []; 
+					var divdomain = $("#data-asset").empty(); 
+	
+					$.each(msg_data, function(i, value) {	
+						if(i < 8) {
+						
+							var num = value['objectCount'].toString(); 
+						
+							divdomain.append("<div style='text-align:center;' class='datadomain num"+ i + "'> <p style='font-size:40px; display: inline-block;margin: 0 auto; padding-top: 10px;'>" + num +  "</p><p style='font-size: 12px; text-align:center; '>" + value['objectSubCategory'] + "</p></div>")
+																				
+						}
+						
+						
+					});
+                      
+						
+                    //});
+                }
+				
+				
+            });
+
+
+			//console.log("("+JSON.parse(sessionStorage.ObjectSelValue).length+")");
+			 
+            /* Retrieves list of Requests starts */
+            var count = 1;
+            var upi_id = sessionStorage.getItem('Upi');
+			//var upi_id = '000504991';
+            //alert("upi id is"+upi_id);
+			
+			$.ajax
+				({
+                    type: "GET",
+                    url: nodeproxyurl +'?qs=%2Fjson%2FApplication%2FBUSINESS_DIRECTORY%2FDATA_ACCESS_REQUEST%2FgetAccessRequestStatus?IN_REQUESTOR_UPI='+upi_id,
+					//url: hostcisurl+"/json/Application/BUSINESS_DIRECTORY/DATA_ACCESS_REQUEST/getAccessRequestStatus",
+					dataType: 'json',				
+					headers: {   
+					'Content-Type': 'application/json; charset=utf-8'
+					},				
+					
+					//data: { "IN_REQUESTOR_UPI" : upi_id },
+					success: function (data){					
+            
+						var data = data.retrieveAccessRequestsResponse.accessRequst;
+						$.each(data, function(index, value) {
+							if (index < 10) {
+								$('#recent_request_table').append("<tr><td><a href='javascript:;' class='request_key'>" + value.requestNumber + "</a></td><td>" + value.projectName + "</td><td>" + value.reqeustStatus + "</td></tr>");
+							}
+							if ((value.reqeustStatus == "Approved") && count <= 5) {
+								$('#recently_completed').append("<tr><td>" + value.requestNumber + "</td><td><a href='javascript:;'>" + value.projectName + "</a></td><td>" + value.reqeustStatus + "</td></tr>");
+								count++
+							}
+						});
+					}
+				
+            });
+             /* Retrieves list of Requests ends */
+
+			
+
+        })
+        $(document).on('click', function (e) {
+            $('[data-toggle="popover"],[data-original-title]').each(function () {
+                //the 'is' for buttons that trigger popups
+                //the 'has' for icons within a button that triggers a popup
+                if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {                
+                    (($(this).popover('hide').data('bs.popover')||{}).inState||{}).click = false  // fix for BS 3.3.6
+                }
+        
+            });
+        });   
+        $( document ).tooltip();         
+            // Bind resize event
+        $(window).bind('resize', function(){
+            $('.popover').popover('hide');
+        });
+    </script>
+</body>
+</html>
+<script>
+// Session manager
+            function cartclick(){
+                var lth =  $(".cartItem_count").text(); 
+                if(lth == "0")
+                {
+                        $("#popup6").css("display", "block");
+                        $('.overlay').css({
+                            'height': $(document).height(),
+                            'width': $(document).width(),
+                            'display': 'block', 
+                            'pointer-events': 'none'
+                        });  
+                                            
+                }
+                else{
+                    location.href = 'RequestBasket.html';
+                }
+            }
+maintainSession();
+
+
+</script>
+
